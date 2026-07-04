@@ -26,18 +26,29 @@ This cell installs the allensdk and mounts the necessary data for the python env
 
 ![drive_path setup cell](support_files/drive_path_setup_cell.png)
 
-The important thing this cell does is set the “manifest_file” variable to point to the “manifest.json” file.  You *may* need to alter the “data_root” variable if you are on Windows or Linux, depending on how the hard drive is mounted.  For macOS and Colab this cell will *probably* work as written.  
+The important thing this cell does is set the “manifest_file” variable to point to the “manifest.json” file.  **You *may* need to alter the “data_root” variable if you are on Windows or Linux, depending on how the hard drive is mounted.**  For macOS and Colab this cell will *probably* work as written.  
 
-Importantly, you will need to set up a conda environment that has the appropriate versions of python, numpy, the allensdk, and other software.  Simply pip installing these packages will not work.  We have provided a file ‘environment.yml’ that should work. You can find this file at [environment.yml](support_files/environment.yml).  You can set up this environment with the following conda command:
+Importantly, you will need to set up a conda environment that has the appropriate versions of python, numpy, the allensdk, and other software. From your terminal, create a new enviroment:
 
 ```
-conda env create -f environment.yml -n trend2025
+conda create -n trend2026 python=3.10 jupyter ipykernel
 ```
-and then you can activate this environment with the following command:
+
+then you can activate this environment with this command:
+
 ```
-conda activate trend2025
+conda activate trend2026
 ```
-You should now be able to run the notebooks locally.
+
+last, install the allensdk. You will need to copy and paste this line:
+
+```
+pip install git+https://github.com/AllenInstitute/AllenSDK@1bdca3ad884c3a5edea8236161424650603e6f29 "numpy == 1.26.4" "pandas == 2.3.0" "matplotlib > 3.8.0" "statsmodels >= 0.14.4"
+```
+
+You should now be able to launch jupyter notebook and work with the notebooks locally. 
+
+REMEMBER: do not run the very first cell that is only for Colab.
 
 
 3.  Downloading Allen Institute data. - NOT RECOMMENDED
